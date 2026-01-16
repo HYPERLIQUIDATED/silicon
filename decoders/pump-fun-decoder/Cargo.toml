@@ -1,0 +1,11 @@
+[package]
+name = "silicon-pump-fun-decoder"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+borsh = { workspace = true, features = ["derive"] }
+silicon-core = { workspace = true }
+solana-account = { workspace = true }
+solana-address = { workspace = true, features = ["borsh"] }
+solana-instruction = { workspace = true }

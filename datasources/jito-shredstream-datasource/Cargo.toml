@@ -1,0 +1,18 @@
+[package]
+name = "silicon-jito-shredstream-datasource"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+async-trait = { workspace = true }
+log = { workspace = true }
+mea = { workspace = true }
+silicon-core = { workspace = true }
+silicon-jito-protos = { workspace = true }
+solana-entry = { workspace = true, features = ["agave-unstable-api"] }
+solana-message = { workspace = true }
+solana-transaction-status-client-types = { workspace = true, features = [
+  "agave-unstable-api"
+] }
+tokio = { workspace = true, features = ["macros"] }
+wincode = { workspace = true }

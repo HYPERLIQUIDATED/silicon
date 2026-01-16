@@ -1,0 +1,19 @@
+[package]
+name = "silicon-yellowstone-grpc-datasource"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+async-trait = { workspace = true }
+futures-util = { workspace = true }
+log = { workspace = true }
+mea = { workspace = true }
+silicon-core = { workspace = true }
+solana-account = { workspace = true }
+solana-address = { workspace = true }
+solana-hash = { workspace = true, features = ["decode"] }
+solana-signature = { workspace = true }
+solana-system-interface = { workspace = true }
+tokio = { workspace = true, features = ["macros"] }
+yellowstone-grpc-client = { workspace = true }
+yellowstone-grpc-proto = { workspace = true, features = ["convert"] }

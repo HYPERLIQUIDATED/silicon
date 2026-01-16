@@ -1,0 +1,47 @@
+[workspace]
+resolver = "3"
+members = ["core", "datasources/*", "decoders/*", "misc/*"]
+
+[workspace.package]
+version = "0.3.0"
+edition = "2024"
+
+[workspace.dependencies]
+async-trait = "0.1"
+borsh = { version = "1", default-features = false }
+futures-util = { version = "0.3", default-features = false }
+log = "0.4"
+mea = "0.6"
+prost = { version = "0.14", default-features = false }
+prost-types = { version = "0.14", default-features = false }
+protobuf-src = "1"
+silicon-bags-fee-share-decoder = { path = "decoders/bags-fee-share-decoder" }
+silicon-bags-meteora-fee-claimer-decoder = { path = "decoders/bags-meteora-fee-claimer-decoder" }
+silicon-core = { path = "core" }
+silicon-jito-protos = { path = "misc/jito-protos" }
+silicon-jito-shredstream-datasource = { path = "datasources/jito-shredstream-datasource" }
+silicon-meteora-damm-v2-decoder = { path = "decoders/meteora-damm-v2-decoder" }
+silicon-meteora-dbc-decoder = { path = "decoders/meteora-dbc-decoder" }
+silicon-pump-amm-decoder = { path = "decoders/pump-amm-decoder" }
+silicon-pump-fun-decoder = { path = "decoders/pump-fun-decoder" }
+silicon-raydium-cpmm-decoder = { path = "decoders/raydium-cpmm-decoder" }
+silicon-raydium-launchpad-decoder = { path = "decoders/raydium-launchpad-decoder" }
+silicon-yellowstone-grpc-datasource = { path = "datasources/yellowstone-grpc-datasource" }
+solana-account = "4"
+solana-address = "2"
+solana-clock = "3"
+solana-entry = "3"
+solana-hash = { version = "4", default-features = false }
+solana-instruction = { version = "3", default-features = false }
+solana-message = "3"
+solana-signature = { version = "3", default-features = false }
+solana-system-interface = "3"
+solana-transaction = "3"
+solana-transaction-status-client-types = "3"
+tokio = { version = "1", default-features = false }
+tonic = { version = "0.14", default-features = false }
+tonic-prost = "0.14"
+tonic-prost-build = { version = "0.14", default-features = false }
+wincode = "0.1"
+yellowstone-grpc-client = "11"
+yellowstone-grpc-proto = { version = "11", default-features = false }
