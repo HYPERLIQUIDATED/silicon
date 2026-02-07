@@ -43,9 +43,11 @@ pub struct PoolConfig {
     pub migrated_collect_fee_mode: u8,
     pub migrated_dynamic_fee: u8,
     pub migrated_pool_fee_bps: u16,
-    pub _padding_1: [u8; 4],
+    pub migrated_pool_base_fee_mode: u8,
+    pub enable_first_swap_with_min_fee: u8,
+    pub _padding_1: [u8; 2],
     pub pool_creation_fee: u64,
-    pub _padding_2: u128,
+    pub migrated_pool_base_fee_bytes: [u8; 16],
     pub sqrt_start_price: u128,
     pub curve: [LiquidityDistributionConfig; 20],
 }

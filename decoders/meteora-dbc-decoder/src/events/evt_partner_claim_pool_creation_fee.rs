@@ -6,6 +6,7 @@ pub struct EvtPartnerClaimPoolCreationFee {
     pub pool: Address,
     pub partner: Address,
     pub creation_fee: u64,
+    pub fee_receiver: Address,
 }
 
 impl EvtPartnerClaimPoolCreationFee {

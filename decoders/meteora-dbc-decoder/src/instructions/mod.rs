@@ -1,5 +1,4 @@
 pub mod claim_creator_trading_fee;
-pub mod claim_legacy_pool_creation_fee;
 pub mod claim_partner_pool_creation_fee;
 pub mod claim_protocol_fee;
 pub mod claim_protocol_pool_creation_fee;
@@ -21,7 +20,6 @@ pub mod migration_damm_v2;
 pub mod migration_damm_v2_create_metadata;
 pub mod migration_meteora_damm_create_metadata;
 pub mod partner_withdraw_surplus;
-pub mod protocol_withdraw_surplus;
 pub mod swap;
 pub mod swap2;
 pub mod transfer_pool_creator;
@@ -34,17 +32,17 @@ use solana_instruction::Instruction;
 use crate::{MeteoraDbcDecoder, PROGRAM_ID};
 
 pub use self::{
-    claim_creator_trading_fee::*, claim_legacy_pool_creation_fee::*,
-    claim_partner_pool_creation_fee::*, claim_protocol_fee::*, claim_protocol_pool_creation_fee::*,
-    claim_trading_fee::*, close_claim_protocol_fee_operator::*, cpi_event::*,
-    create_claim_protocol_fee_operator::*, create_config::*, create_locker::*,
-    create_partner_metadata::*, create_virtual_pool_metadata::*, creator_withdraw_surplus::*,
+    claim_creator_trading_fee::*, claim_partner_pool_creation_fee::*, claim_protocol_fee::*,
+    claim_protocol_pool_creation_fee::*, claim_trading_fee::*,
+    close_claim_protocol_fee_operator::*, cpi_event::*, create_claim_protocol_fee_operator::*,
+    create_config::*, create_locker::*, create_partner_metadata::*,
+    create_virtual_pool_metadata::*, creator_withdraw_surplus::*,
     initialize_virtual_pool_with_spl_token::*, initialize_virtual_pool_with_token2022::*,
     migrate_meteora_damm::*, migrate_meteora_damm_claim_lp_token::*,
     migrate_meteora_damm_lock_lp_token::*, migration_damm_v2::*,
     migration_damm_v2_create_metadata::*, migration_meteora_damm_create_metadata::*,
-    partner_withdraw_surplus::*, protocol_withdraw_surplus::*, swap::*, swap2::*,
-    transfer_pool_creator::*, withdraw_leftover::*, withdraw_migration_fee::*,
+    partner_withdraw_surplus::*, swap::*, swap2::*, transfer_pool_creator::*, withdraw_leftover::*,
+    withdraw_migration_fee::*,
 };
 
 #[derive(Debug, Clone, PartialEq)]
@@ -52,11 +50,6 @@ pub enum MeteoraDbcInstruction {
     ClaimCreatorTradingFee {
         data: ClaimCreatorTradingFee,
         accounts: ClaimCreatorTradingFeeInstructionAccounts,
-    },
-
-    ClaimLegacyPoolCreationFee {
-        data: ClaimLegacyPoolCreationFee,
-        accounts: ClaimLegacyPoolCreationFeeInstructionAccounts,
     },
 
     ClaimPartnerPoolCreationFee {
@@ -164,11 +157,6 @@ pub enum MeteoraDbcInstruction {
         accounts: PartnerWithdrawSurplusInstructionAccounts,
     },
 
-    ProtocolWithdrawSurplus {
-        data: ProtocolWithdrawSurplus,
-        accounts: ProtocolWithdrawSurplusInstructionAccounts,
-    },
-
     Swap {
         data: Swap,
         accounts: SwapInstructionAccounts,
@@ -211,15 +199,6 @@ impl InstructionDecoder for MeteoraDbcDecoder {
                     ClaimCreatorTradingFee::arrange_accounts(&instruction.accounts)
             {
                 return Some(MeteoraDbcInstruction::ClaimCreatorTradingFee { data, accounts });
-            }
-        }
-
-        {
-            if let Some(data) = ClaimLegacyPoolCreationFee::decode(data)
-                && let Some(accounts) =
-                    ClaimLegacyPoolCreationFee::arrange_accounts(&instruction.accounts)
-            {
-                return Some(MeteoraDbcInstruction::ClaimLegacyPoolCreationFee { data, accounts });
             }
         }
 
@@ -429,15 +408,6 @@ impl InstructionDecoder for MeteoraDbcDecoder {
                     PartnerWithdrawSurplus::arrange_accounts(&instruction.accounts)
             {
                 return Some(MeteoraDbcInstruction::PartnerWithdrawSurplus { data, accounts });
-            }
-        }
-
-        {
-            if let Some(data) = ProtocolWithdrawSurplus::decode(data)
-                && let Some(accounts) =
-                    ProtocolWithdrawSurplus::arrange_accounts(&instruction.accounts)
-            {
-                return Some(MeteoraDbcInstruction::ProtocolWithdrawSurplus { data, accounts });
             }
         }
 

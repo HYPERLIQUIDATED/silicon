@@ -2,7 +2,8 @@ use borsh::{BorshDeserialize, BorshSerialize};
 
 use crate::types::{
     LiquidityDistributionParameters, LiquidityVestingInfoParams, LockedVestingParams,
-    MigratedPoolFee, MigrationFee, PoolFeeParameters, TokenSupplyParams,
+    MigratedPoolFee, MigratedPoolMarketCapFeeSchedulerParams, MigrationFee, PoolFeeParameters,
+    TokenSupplyParams,
 };
 
 #[derive(Debug, Clone, BorshSerialize, BorshDeserialize, PartialEq)]
@@ -29,6 +30,9 @@ pub struct ConfigParameters {
     pub pool_creation_fee: u64,
     pub partner_liquidity_vesting_info: LiquidityVestingInfoParams,
     pub creator_liquidity_vesting_info: LiquidityVestingInfoParams,
-    pub padding: [u8; 22],
+    pub migrated_pool_base_fee_mode: u8,
+    pub migrated_pool_market_cap_fee_scheduler_params: MigratedPoolMarketCapFeeSchedulerParams,
+    pub enable_first_swap_with_min_fee: bool,
+    pub padding: [u8; 4],
     pub curve: Vec<LiquidityDistributionParameters>,
 }

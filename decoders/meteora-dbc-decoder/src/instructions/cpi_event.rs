@@ -4,13 +4,13 @@ use solana_address::Address;
 use solana_instruction::account_meta::AccountMeta;
 
 use crate::events::{
-    EvtClaimCreatorTradingFee, EvtClaimPoolCreationFee, EvtClaimProtocolFee, EvtClaimTradingFee,
-    EvtCloseClaimFeeOperator, EvtCreateClaimFeeOperator, EvtCreateConfig, EvtCreateConfigV2,
+    EvtClaimCreatorTradingFee, EvtClaimPoolCreationFee, EvtClaimProtocolFee,
+    EvtClaimProtocolLiquidityMigrationFee, EvtClaimTradingFee, EvtCloseClaimFeeOperator,
+    EvtCreateClaimFeeOperator, EvtCreateConfig, EvtCreateConfigV2,
     EvtCreateMeteoraMigrationMetadata, EvtCreatorWithdrawSurplus, EvtCurveComplete,
     EvtInitializePool, EvtPartnerClaimPoolCreationFee, EvtPartnerMetadata,
-    EvtPartnerWithdrawMigrationFee, EvtPartnerWithdrawSurplus, EvtProtocolWithdrawSurplus, EvtSwap,
-    EvtSwap2, EvtUpdatePoolCreator, EvtVirtualPoolMetadata, EvtWithdrawLeftover,
-    EvtWithdrawMigrationFee,
+    EvtPartnerWithdrawMigrationFee, EvtPartnerWithdrawSurplus, EvtSwap, EvtSwap2,
+    EvtUpdatePoolCreator, EvtVirtualPoolMetadata, EvtWithdrawLeftover, EvtWithdrawMigrationFee,
 };
 
 #[derive(Debug, Clone, BorshSerialize, BorshDeserialize, PartialEq)]
@@ -18,6 +18,7 @@ pub enum CpiEvent {
     EvtClaimCreatorTradingFee(EvtClaimCreatorTradingFee),
     EvtClaimPoolCreationFee(EvtClaimPoolCreationFee),
     EvtClaimProtocolFee(EvtClaimProtocolFee),
+    EvtClaimProtocolLiquidityMigrationFee(EvtClaimProtocolLiquidityMigrationFee),
     EvtClaimTradingFee(EvtClaimTradingFee),
     EvtCloseClaimFeeOperator(EvtCloseClaimFeeOperator),
     EvtCreateClaimFeeOperator(EvtCreateClaimFeeOperator),
@@ -31,7 +32,6 @@ pub enum CpiEvent {
     EvtPartnerMetadata(EvtPartnerMetadata),
     EvtPartnerWithdrawMigrationFee(EvtPartnerWithdrawMigrationFee),
     EvtPartnerWithdrawSurplus(EvtPartnerWithdrawSurplus),
-    EvtProtocolWithdrawSurplus(EvtProtocolWithdrawSurplus),
     EvtSwap(EvtSwap),
     EvtSwap2(EvtSwap2),
     EvtUpdatePoolCreator(EvtUpdatePoolCreator),
@@ -68,6 +68,12 @@ impl CpiEvent {
         {
             if let Some(decoded) = EvtClaimProtocolFee::decode(data) {
                 return Some(CpiEvent::EvtClaimProtocolFee(decoded));
+            }
+        }
+
+        {
+            if let Some(decoded) = EvtClaimProtocolLiquidityMigrationFee::decode(data) {
+                return Some(CpiEvent::EvtClaimProtocolLiquidityMigrationFee(decoded));
             }
         }
 
@@ -146,12 +152,6 @@ impl CpiEvent {
         {
             if let Some(decoded) = EvtPartnerWithdrawSurplus::decode(data) {
                 return Some(CpiEvent::EvtPartnerWithdrawSurplus(decoded));
-            }
-        }
-
-        {
-            if let Some(decoded) = EvtProtocolWithdrawSurplus::decode(data) {
-                return Some(CpiEvent::EvtProtocolWithdrawSurplus(decoded));
             }
         }
 

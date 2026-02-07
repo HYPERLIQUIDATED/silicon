@@ -33,8 +33,13 @@ pub struct VirtualPool {
     pub creator_quote_fee: u64,
     pub legacy_creation_fee_bits: u8,
     pub creation_fee_bits: u8,
-    pub _padding_0: [u8; 6],
-    pub _padding_1: [u64; 6],
+    pub has_swap: u8,
+    pub _padding_0: [u8; 5],
+    pub protocol_liquidity_migration_fee_bps: u16,
+    pub _padding_1: [u8; 6],
+    pub protocol_migration_base_fee_amount: u64,
+    pub protocol_migration_quote_fee_amount: u64,
+    pub _padding_2: [u64; 3],
 }
 
 impl VirtualPool {

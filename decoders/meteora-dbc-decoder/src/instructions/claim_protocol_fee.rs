@@ -4,7 +4,10 @@ use solana_address::Address;
 use solana_instruction::account_meta::AccountMeta;
 
 #[derive(Debug, Clone, BorshSerialize, BorshDeserialize, PartialEq)]
-pub struct ClaimProtocolFee {}
+pub struct ClaimProtocolFee {
+    pub max_base_amount: u64,
+    pub max_quote_amount: u64,
+}
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct ClaimProtocolFeeInstructionAccounts {

@@ -13,6 +13,7 @@ pub mod liquidity_vesting_info_params;
 pub mod locked_vesting_config;
 pub mod locked_vesting_params;
 pub mod migrated_pool_fee;
+pub mod migrated_pool_market_cap_fee_scheduler_params;
 pub mod migration_fee;
 pub mod pool_fee_parameters;
 pub mod pool_fees;
@@ -31,7 +32,8 @@ pub use self::{
     dynamic_fee_config::*, dynamic_fee_parameters::*, initialize_pool_parameters::*,
     liquidity_distribution_config::*, liquidity_distribution_parameters::*,
     liquidity_vesting_info::*, liquidity_vesting_info_params::*, locked_vesting_config::*,
-    locked_vesting_params::*, migrated_pool_fee::*, migration_fee::*, pool_fee_parameters::*,
+    locked_vesting_params::*, migrated_pool_fee::*,
+    migrated_pool_market_cap_fee_scheduler_params::*, migration_fee::*, pool_fee_parameters::*,
     pool_fees::*, pool_fees_config::*, pool_metrics::*, swap_parameters::*, swap_parameters2::*,
     swap_result::*, swap_result2::*, token_supply_params::*, volatility_tracker::*,
 };

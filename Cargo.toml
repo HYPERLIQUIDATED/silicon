@@ -3,7 +3,7 @@ resolver = "3"
 members = ["core", "datasources/*", "decoders/*", "misc/*"]
 
 [workspace.package]
-version = "0.2.1"
+version = "0.3.0"
 edition = "2024"
 
 [workspace.dependencies]
@@ -25,7 +25,7 @@ silicon-meteora-dbc-decoder = { path = "decoders/meteora-dbc-decoder" }
 silicon-pump-fun-decoder = { path = "decoders/pump-fun-decoder" }
 silicon-raydium-launchpad-decoder = { path = "decoders/raydium-launchpad-decoder" }
 silicon-yellowstone-grpc-datasource = { path = "datasources/yellowstone-grpc-datasource" }
-solana-account = "3"
+solana-account = "4"
 solana-address = "2"
 solana-clock = "3"
 solana-entry = "3"
